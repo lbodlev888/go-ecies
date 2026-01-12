@@ -51,3 +51,11 @@ func Decrypt(privateKey *ecdh.PrivateKey, curve ecdh.Curve, encData EncryptedDat
 	if err != nil { return nil, fmt.Errorf("Could not decrypt data: %w", err) }
 	return plaintext, nil
 }
+
+func GenerateKey(curve ecdh.Curve) (*ecdh.PrivateKey, error) {
+	privKey, err := curve.GenerateKey(rand.Reader)
+	if err != nil {
+		return nil, err
+	}
+	return privKey, nil
+}
